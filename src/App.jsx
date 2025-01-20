@@ -35,7 +35,7 @@ function App() {
       {/* Render theme toggle button only if not authenticated */}
       {!isAuth && (
         <div>
-          <Auth isDarkMode={isDarkMode} setIsAuth={setIsAuth} />
+          <Auth isDarkMode={isDarkMode} setIsAuth={setIsAuth} setRoom={setRoom} />
           <button className="theme-toggle" onClick={toggleTheme}>
             {isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
           </button>
@@ -61,7 +61,7 @@ function App() {
 
       {/* Sign out button visible for authenticated users */}
       {isAuth && (
-        <div className='sign-out'>
+        <div className="sign-out">
           <button onClick={SignUserOut}>Sign Out</button>
         </div>
       )}
