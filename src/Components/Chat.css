@@ -3,10 +3,36 @@ body {
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #1e1f22; /* Deep grey for a modern feel */
-  color: #f1f1f1; /* Light text for readability */
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Chat Page Background */
+body.chat-page {
+  background-color: #1e1f22; /* Dark grey for chat page */
+  color: #f1f1f1;
+}
+
+/* Google Sign In and Room Entry Pages Background */
+body.sign-in-page, body.room-entry-page {
+  background-color: #ffffff; /* White background for sign-in and room entry */
+  color: #000000; /* Black text for better contrast */
+}
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #1e1f22; /* Dark grey */
+  color: #f1f1f1; /* Light text */
+}
+
+/* Light Mode Styles */
+body.light-mode {
+  background-color: #ffffff; /* White background */
+  color: #000000; /* Dark text */
 }
 
 /* Chat App Container */
@@ -14,13 +40,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  height: 100%;
-  width: 100%;
-  background-color: #2c2f33; /* Chat container background */
+  height: 100vh;
+  width: 100vw;
+  max-width: 1600px;
+  margin: 0 auto;
+  background-color: #2c2f33;
   border-left: 1px solid #23272a;
   border-right: 1px solid #23272a;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
+  position: relative;
 }
 
 /* Chat Header */
@@ -33,7 +62,7 @@ body {
 
 .chat-header h2 {
   margin: 0;
-  font-size: 18px;
+  font-size: 20px;
   color: #f1f1f1;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -47,16 +76,17 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px; /* Space between messages */
+  background-color: #2c2f33;
 }
 
 /* Individual Messages */
 .message {
-  max-width: 60%; /* Messages capped at 60% width for better layout */
+  max-width: 60%; /* Messages capped at 60% width */
   padding: 10px 14px;
   background-color: #424549; /* Grey bubble */
   border-radius: 12px;
   color: #f1f1f1;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   position: relative;
   word-wrap: break-word;
@@ -76,7 +106,7 @@ body {
   border-top-right-radius: 4px;
 }
 
-/* Message Metadata (e.g., Name or Timestamp) */
+/* Message Metadata */
 .message .metadata {
   font-size: 12px;
   color: #b9bbbe;
@@ -89,49 +119,38 @@ body {
   display: flex;
   align-items: center;
   padding: 12px;
-  background-color: #23272a; /* Matches the global background */
+  background-color: #23272a;
   border-top: 1px solid #424549;
   position: sticky;
   bottom: 0;
 }
 
-/* Dynamically resizing input */
+/* Chat Input */
 .new-chat-input {
   flex: 1;
-  padding: 10px 12px;
+  padding: 12px 16px;
   font-size: 16px;
-  color: #f1f1f1; /* Light text for input */
-  background-color: #2c2f33; /* Input background */
+  color: #f1f1f1;
+  background-color: #2c2f33;
   border: 1px solid #424549;
   border-radius: 4px;
   outline: none;
   transition: border-color 0.3s, box-shadow 0.3s, width 0.2s ease-in-out;
-  width: 20ch; /* Default width */
 }
 
 .new-chat-input:focus {
-  border-color: #5865f2; /* Blue focus effect */
+  border-color: #5865f2;
   box-shadow: 0 0 6px rgba(88, 101, 242, 0.4);
-}
-
-.new-chat-input:placeholder-shown {
-  width: 20ch; /* Default width when placeholder is shown */
-}
-
-.new-chat-input:not(:placeholder-shown) {
-  width: auto; /* Dynamically adjust to content */
-  max-width: 100%; /* Prevent overflow */
-  min-width: 20ch; /* Ensure it doesn’t shrink too small */
 }
 
 /* Send Button */
 .send-button {
   margin-left: 12px;
-  padding: 10px 16px;
+  padding: 12px 16px;
   font-size: 16px;
   font-weight: bold;
-  color: #f1f1f1; /* Light text */
-  background-color: #5865f2; /* Vibrant blue */
+  color: #f1f1f1;
+  background-color: #5865f2;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -139,12 +158,12 @@ body {
 }
 
 .send-button:hover {
-  background-color: #4752c4; /* Slightly darker blue on hover */
+  background-color: #4752c4;
   transform: translateY(-2px);
 }
 
 .send-button:active {
-  background-color: #3c45a5; /* Even darker blue when active */
+  background-color: #3c45a5;
   transform: translateY(0);
 }
 
@@ -159,18 +178,19 @@ body {
 }
 
 .Chat-app::-webkit-scrollbar-thumb {
-  background-color: #5865f2; /* Blue thumb */
+  background-color: #5865f2;
   border-radius: 5px;
 }
 
 .Chat-app::-webkit-scrollbar-thumb:hover {
-  background-color: #4752c4; /* Darker blue on hover */
+  background-color: #4752c4;
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
   .Chat-app {
     max-width: 100%;
+    height: 100vh;
   }
 
   .new-chat-form {
