@@ -1,0 +1,245 @@
+/* General Styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Roboto', Arial, sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.App.light {
+  background-color: #161616; /* Light background color */
+  color: #5f5f5f;
+}
+
+.App.dark {
+  background-color: #333; /* Dark background color */
+  color: #fff;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #2575fc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: #1d62d6;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Container for the authentication component */
+.Auth {
+  background: #ffffff;
+  color: #333;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 600px;
+  width: 90%;
+  transition: all 0.3s ease-in-out;
+}
+
+.Auth.dark {
+  background: #222; /* Dark theme background */
+  color: #fff; /* Dark theme text color */
+}
+
+.Auth p {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+.Auth button {
+  padding: 15px 30px;
+  background-color: #2575fc;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.Auth button:hover {
+  background-color: #1d62d6;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Room entry section */
+.room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  color: #333;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 90%;
+  transition: all 0.3s ease-in-out;
+}
+
+.room label {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.room input {
+  width: 100%;
+  padding: 18px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.room input:focus {
+  outline: none;
+  border-color: #2575fc;
+  box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
+}
+
+.room button {
+  padding: 15px 30px;
+  background-color: #2575fc;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.room button:hover {
+  background-color: #1d62d6;
+  transform: translateY(-4px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Sign-out button styles */
+.sign-out button {
+  position: fixed;
+  top: 20px; /* Moved to top-left for PC devices */
+  left: 20px; /* Moved to top-left for PC devices */
+  transform: translateX(0);
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sign-out button:hover {
+  background-color: #c0392b;
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hide theme toggle button for both PC and mobile */
+.theme-toggle-hidden {
+  display: none;
+}
+
+/* Responsive Styling */
+@media (max-width: 1024px) {
+  .Auth, .room {
+    padding: 30px;
+    font-size: 1.1rem;
+  }
+
+  .Auth p,
+  .room label {
+    font-size: 1.2rem;
+  }
+
+  .Auth button,
+  .room button {
+    font-size: 1.1rem;
+    padding: 14px 28px;
+  }
+
+  .room input {
+    padding: 16px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .Auth, .room {
+    padding: 25px;
+    font-size: 1rem;
+  }
+
+  .Auth p,
+  .room label {
+    font-size: 1.1rem;
+  }
+
+  .Auth button,
+  .room button {
+    font-size: 1rem;
+    padding: 12px 24px;
+  }
+
+  .room input {
+    padding: 14px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .Auth, .room {
+    padding: 20px;
+    max-width: 100%;
+    width: 90%;
+  }
+
+  .Auth p,
+  .room label {
+    font-size: 1rem;
+  }
+
+  .Auth button,
+  .room button {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+  }
+
+  .room input {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  /* Update Sign-out position for mobile screens */
+  .sign-out button {
+    top: 20px;
+    left: 20px;
+    bottom: auto;
+    transform: translateX(0);
+  }
+}
