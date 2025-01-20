@@ -14,16 +14,18 @@ html, body {
   transition: background-color 0.3s ease;
 }
 
+/* Light and Dark Mode Styles */
 .App.light {
-  background-color: #161616; /* Light background color */
-  color: #5f5f5f;
+  background-color: #ffffff; /* Light background color */
+  color: #333; /* Dark text */
 }
 
 .App.dark {
-  background-color: #333; /* Dark background color */
-  color: #fff;
+  background-color: #fff; /* Dark background color */
+  color: #333; /* White text */
 }
 
+/* Theme Toggle Button */
 .theme-toggle {
   position: absolute;
   top: 20px;
@@ -57,8 +59,9 @@ html, body {
   transition: all 0.3s ease-in-out;
 }
 
+/* Dark Mode for Auth */
 .Auth.dark {
-  background: #222; /* Dark theme background */
+  background: #333; /* Dark theme background */
   color: #fff; /* Dark theme text color */
 }
 
@@ -98,6 +101,12 @@ html, body {
   max-width: 600px;
   width: 90%;
   transition: all 0.3s ease-in-out;
+}
+
+/* Dark Mode for Room */
+.room.dark {
+  background: #222; /* Dark theme background */
+  color: #fff; /* Dark theme text color */
 }
 
 .room label {
