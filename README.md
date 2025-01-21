@@ -118,6 +118,11 @@ Contributions are welcome! Follow these steps to contribute:
 5. Create a Pull Request on the main repository.
 
 ---
+## **Credits**
+
+Special thanks to PedroTech for his amazing tutorials that helped in building this project.
+
+---
 
 ## **License**
 
