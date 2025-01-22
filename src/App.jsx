@@ -1,10 +1,11 @@
-import { useRef, useState, useEffect } from 'react';
-import './App.css';
-import Auth from './Components/Auth';
-import Cookies from 'universal-cookie';
-import Chat from './Components/Chat';
-import { signOut } from 'firebase/auth';
-import { auth } from './firebase-config';
+import { useRef, useState, useEffect } from "react";
+import "./App.css";
+import Auth from "./Components/Auth";
+import Cookies from "universal-cookie";
+import Chat from "./Components/Chat";
+import { signOut } from "firebase/auth";
+import { auth, db } from "./firebase-config";
+import { deleteDoc, doc } from "firebase/firestore";
 
 const cookies = new Cookies();
 
@@ -15,14 +16,32 @@ function App() {
   const roomInputRef = useRef(null);
 
   const SignUserOut = async () => {
-    await signOut(auth);
-    cookies.remove("auth-token");
-    setIsAuth(false);
-    setRoom(null);
-    roomInputRef.current.value = '';
-    console.log("User signed out successfully")
-    alert("User signed out successfully");
-    window.location.reload();
+    try {
+      // Clear user data from Firestore if needed
+      const userDoc = doc(db, "users", auth.currentUser.uid); // Assuming a 'users' collection
+      await deleteDoc(userDoc);
+
+      // Sign the user out
+      await signOut(auth);
+
+      // Remove local cookie and reset states
+      cookies.remove("auth-token");
+      setIsAuth(false);
+      setRoom(null);
+
+      // Clear input field
+      if (roomInputRef.current) {
+        roomInputRef.current.value = "";
+      }
+
+      console.log("User signed out successfully");
+      alert("User signed out successfully");
+      
+      // Reload the page to ensure a fresh start
+      window.location.reload();
+    } catch (error) {
+      console.error("Error during sign-out:", error);
+    }
   };
 
   const toggleTheme = () => {
