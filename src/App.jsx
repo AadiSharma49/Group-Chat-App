@@ -21,6 +21,8 @@ function App() {
     setRoom(null);
     roomInputRef.current.value = '';
     console.log("User signed out successfully")
+    alert("User signed out successfully");
+    window.location.reload();
   };
 
   const toggleTheme = () => {
