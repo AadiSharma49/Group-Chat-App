@@ -18,6 +18,9 @@ function App() {
     await signOut(auth);
     cookies.remove("auth-token");
     setIsAuth(false);
+    setRoom(null);
+    roomInputRef.current.value = '';
+    console.log("User signed out successfully")
   };
 
   const toggleTheme = () => {
