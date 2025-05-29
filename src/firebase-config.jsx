@@ -10,7 +10,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyCfN26QzAD0J7V5LhzjcWO9gg7TuFGyg5k",
   authDomain: "groupchat-89a27.firebaseapp.com",
   projectId: "groupchat-89a27",
-  storageBucket: "groupchat-89a27.firebasestorage.app",
+  storageBucket: "groupchat-89a27.appspot.com",
   messagingSenderId: "642792033072",
   appId: "1:642792033072:web:6a4b289c5d1add49bcd6f5"
 };

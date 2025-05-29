@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { addDoc, collection, serverTimestamp, onSnapshot, where, query, orderBy } from 'firebase/firestore';
+import {
+  addDoc,
+  collection,
+  serverTimestamp,
+  onSnapshot,
+  where,
+  query,
+  orderBy
+} from 'firebase/firestore';
 import { auth, db } from '../firebase-config.jsx';
 import './Chat.css';
 
-const Chat = (props) => {
-  const { room } = props;
+const Chat = ({ room, onLeave }) => { // ✅ Add onLeave callback
   const [newChat, setNewChat] = useState('');
   const [chats, setChats] = useState([]);
   const messagesRef = collection(db, 'messages');
 
-
   useEffect(() => {
-     const queryMessages = query(messagesRef, where('room', '==', room),
-     orderBy("createdAt", "asc")
-  );  
+    const queryMessages = query(
+      messagesRef,
+      where('room', '==', room),
+      orderBy('createdAt', 'asc')
+    );
+
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
-      const messages = snapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
+      const messages = snapshot.docs
+        .map((doc) => ({ ...doc.data(), id: doc.id }))
+        .filter((msg) => msg.createdAt); // Filter out empty timestamps
       setChats(messages);
     });
 
@@ -27,22 +35,32 @@ const Chat = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (newChat === '') return;
+    if (newChat.trim() === '') return;
 
-    await addDoc(messagesRef, {
-      text: newChat,
-      createdAt: serverTimestamp(),
-      user: auth.currentUser.displayName,
-      room,
-    });
+    if (!auth.currentUser) {
+      alert('You must be signed in to send messages.');
+      return;
+    }
 
-    setNewChat('');
+    try {
+      await addDoc(messagesRef, {
+        text: newChat.trim(),
+        createdAt: serverTimestamp(),
+        user: auth.currentUser.displayName,
+        room
+      });
+      setNewChat('');
+    } catch (error) {
+      console.error('🔥 Error sending message:', error);
+      alert('Failed to send message. Please try again.');
+    }
   };
 
   return (
     <div className="Chat-app">
       <div className="chat-header">
         <h2>Room: {room}</h2>
+        <button className="back-button" onClick={onLeave}>⬅ Back</button> {/* ✅ Back Button */}
       </div>
       <div className="messages">
         {chats.map((chat) => (
@@ -59,9 +77,7 @@ const Chat = (props) => {
           onChange={(e) => setNewChat(e.target.value)}
           value={newChat}
         />
-        <button type="submit" className="send-button">
-          Send
-        </button>
+        <button type="submit" className="send-button">Send</button>
       </form>
     </div>
   );
