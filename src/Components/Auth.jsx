@@ -36,9 +36,6 @@ const Auth = ({ isDarkMode, setIsAuth, setRoom }) => {
       <p>Sign In With Google To Continue</p>
 
       <button onClick={signInWithGoogle}>Sign In With Google</button>
-
-      <button onClick={signInWithGoogle}>Sign In With Google
-      </button>
       
     </div>
   );
